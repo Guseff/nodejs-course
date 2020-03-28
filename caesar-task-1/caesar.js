@@ -24,7 +24,5 @@ const transform = through2((data, enc, cb) => {
 pipeline(settings.input, transform, settings.output, err => {
   if (err) {
     throw new Error(err);
-  } else {
-    console.log('Pipeline succeeded.');
   }
 });

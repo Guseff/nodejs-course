@@ -55,7 +55,6 @@ const init = () => {
     }
   }
 
-  // console.log(input, output, shift % 26, action);
   return {
     input,
     output,
