@@ -5,19 +5,20 @@ To run the application from this directory print:
 ```bash
 $ node caesar.js
 ```
+To run from another directory use entire path.
 
 CLI tool accepts 4 options (short alias or full name):
 
-1.  **-s, --shift**: a shift (required)
-2.  **-i, --input**: an input file
-3.  **-o, --output**: an output file
+1.  **-i, --input**: an input file
+2.  **-o, --output**: an output file
+3.  **-s, --shift**: a shift (required)
 4.  **-a, --action**: an action encode/decode (required)
 
 If the input file is missed you can print an input string from keyboard. Then press ENTER for encoding / decoding. After encoding / decoding the next string can be printed. To exit the app press Ctrl+C.
 
 If the output file is missed an output string will be printed in command line.
 
-Shift must be a non-negative number. If shift is 0, input and output strings will be equal.
+Shift must be a non-negative number (may be not decimal, for example 0x11). If shift is 0, input and output strings will be equal.
 
 Action must be one of 'encode' or 'decode' string.
 
