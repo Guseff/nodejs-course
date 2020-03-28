@@ -6,9 +6,9 @@ const init = require('./initial');
 const decoder = require('./decoder');
 const encoder = require('./encoder');
 
-process.on('exit', code => {
-  console.log(`\nAbout to exit with code: ${code}`);
-});
+// process.on('exit', code => {
+//   console.log(`\nAbout to exit with code: ${code}`);
+// });
 
 const settings = init();
 
@@ -27,10 +27,4 @@ pipeline(settings.input, transform, settings.output, err => {
   } else {
     console.log('Pipeline succeeded.');
   }
-});
-
-process.on('SIGINT', () => {
-  console.log('Caught interrupt signal');
-  // eslint-disable-next-line no-process-exit
-  process.exit(0);
 });
