@@ -1,8 +1,6 @@
 const User = require('./user.model');
 
-const users = [...new Array(20)].map(
-  (_, i) => new User({ name: `USER${i + 1}`, login: `user${i + 1}` })
-);
+const users = [new User({ name: 'Vasily', login: 'vasily' })];
 
 const getAll = async () => {
   return users;
@@ -26,8 +24,8 @@ const updateUser = async (userId, { name, login, password }) => {
   return man;
 };
 
-const deleteUser = userId => {
-  const man = users.find(user => user.id === userId);
+const deleteUser = async userId => {
+  const man = await users.find(user => user.id === userId);
   if (!man) return false;
   users.splice(users.indexOf(man), 1);
   return true;

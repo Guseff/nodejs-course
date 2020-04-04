@@ -1,8 +1,6 @@
 const Board = require('./board.model');
 
-const boards = [...new Array(10)].map(
-  (_, i) => new Board({ name: `BOARD${i + 1}`, title: `board${i + 1}` })
-);
+const boards = [];
 
 const getAllBoards = async () => {
   return boards;
@@ -25,7 +23,7 @@ const updateBoard = async (boardId, { title, columns }) => {
   return board;
 };
 
-const deleteBoard = boardId => {
+const deleteBoard = async boardId => {
   const board = boards.find(x => x.id === boardId);
   if (!board) return false;
   boards.splice(boards.indexOf(board), 1);

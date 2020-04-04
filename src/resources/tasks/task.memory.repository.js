@@ -1,23 +1,19 @@
 const Task = require('./task.model');
 
-const tasks = [...new Array(20)].map(() => new Task());
+const tasks = [];
 
-const getAll = async () => {
-  return tasks;
+const getAll = async id => {
+  return id ? tasks.filter(cur => cur.boardId === id) : tasks;
 };
 
-const getTask = async taskId => {
+const getTask = async (boardId, taskId) => {
   return tasks.find(task => task.id === taskId);
 };
 
-const creatTask = async ({
-  title,
-  order,
-  description,
-  userId,
+const creatTask = async (
   boardId,
-  columnId
-}) => {
+  { title, order, description, userId, columnId }
+) => {
   const task = new Task({
     title,
     order,
