@@ -24,8 +24,8 @@ const updateUser = async (userId, { name, login, password }) => {
   return man;
 };
 
-const deleteUser = async userId => {
-  const man = await users.find(user => user.id === userId);
+const deleteUser = userId => {
+  const man = users.find(user => user.id === userId);
   if (!man) return false;
   users.splice(users.indexOf(man), 1);
   return true;
