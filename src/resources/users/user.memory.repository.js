@@ -7,7 +7,7 @@ const getAll = async () => {
 };
 
 const getUser = async userId => {
-  return users.find(user => user.id === userId);
+  return users.find(curr => curr.id === userId);
 };
 
 const creatUser = async ({ name, login, password }) => {
@@ -17,17 +17,17 @@ const creatUser = async ({ name, login, password }) => {
 };
 
 const updateUser = async (userId, { name, login, password }) => {
-  const man = users.find(user => user.id === userId);
-  man.name = name;
-  man.login = login;
-  man.password = password;
-  return man;
+  const user = users.find(curr => curr.id === userId);
+  user.name = name;
+  user.login = login;
+  user.password = password;
+  return user;
 };
 
 const deleteUser = userId => {
-  const man = users.find(user => user.id === userId);
-  if (!man) return false;
-  users.splice(users.indexOf(man), 1);
+  const user = users.find(curr => curr.id === userId);
+  if (!user) return false;
+  users.splice(users.indexOf(user), 1);
   return true;
 };
 

@@ -8,13 +8,13 @@ const putBoard = (id, obj) => boardRepo.updateBoard(id, obj);
 const deleteBoard = async id => {
   await tasksRepo
     .getAll()
-    .then(res => res.filter(cur => cur.boardId === id))
+    .then(res => res.filter(curr => curr.boardId === id))
     .then(res => {
       res.forEach(task => {
         tasksRepo.deleteTask(task.id);
       });
     })
-    .catch(err => console.log('Error when tasks update ', err));
+    .catch(err => console.log('Error when board delete ', err));
 
   return await boardRepo.deleteBoard(id);
 };

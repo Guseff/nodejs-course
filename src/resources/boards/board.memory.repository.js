@@ -7,7 +7,7 @@ const getAllBoards = async () => {
 };
 
 const getBoard = async boardId => {
-  return boards.find(x => x.id === boardId);
+  return boards.find(curr => curr.id === boardId);
 };
 
 const creatBoard = async ({ title, columns }) => {
@@ -17,14 +17,14 @@ const creatBoard = async ({ title, columns }) => {
 };
 
 const updateBoard = async (boardId, { title, columns }) => {
-  const board = boards.find(x => x.id === boardId);
+  const board = boards.find(curr => curr.id === boardId);
   board.title = title;
   board.columns = columns;
   return board;
 };
 
 const deleteBoard = async boardId => {
-  const board = boards.find(x => x.id === boardId);
+  const board = boards.find(curr => curr.id === boardId);
   if (!board) return false;
   boards.splice(boards.indexOf(board), 1);
   return true;

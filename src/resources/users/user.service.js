@@ -8,7 +8,7 @@ const putUser = (id, obj) => usersRepo.updateUser(id, obj);
 const deleteUser = async id => {
   await tasksRepo
     .getAll()
-    .then(res => res.filter(cur => cur.userId === id))
+    .then(res => res.filter(curr => curr.userId === id))
     .then(res => {
       res.forEach(task => {
         tasksRepo.updateTask(task.id, {
@@ -21,7 +21,7 @@ const deleteUser = async id => {
         });
       });
     })
-    .catch(err => console.log('Error when tasks update ', err));
+    .catch(err => console.log('Error when task delete ', err));
 
   return await usersRepo.deleteUser(id);
 };

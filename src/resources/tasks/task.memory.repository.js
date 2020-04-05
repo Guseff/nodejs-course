@@ -3,7 +3,7 @@ const Task = require('./task.model');
 const tasks = [];
 
 const getAll = async id => {
-  return id ? tasks.filter(cur => cur.boardId === id) : tasks;
+  return id ? tasks.filter(curr => curr.boardId === id) : tasks;
 };
 
 const getTask = async (boardId, taskId) => {
@@ -30,7 +30,7 @@ const updateTask = async (
   taskId,
   { title, order, description, userId, boardId, columnId }
 ) => {
-  const task = tasks.find(x => x.id === taskId);
+  const task = tasks.find(curr => curr.id === taskId);
   task.title = title;
   task.order = order;
   task.description = description;
@@ -41,7 +41,7 @@ const updateTask = async (
 };
 
 const deleteTask = taskId => {
-  const task = tasks.find(x => x.id === taskId);
+  const task = tasks.find(curr => curr.id === taskId);
   if (!task) return false;
   tasks.splice(tasks.indexOf(task), 1);
   return true;
