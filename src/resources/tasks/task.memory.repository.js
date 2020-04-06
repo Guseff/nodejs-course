@@ -7,7 +7,7 @@ const getAll = async id => {
 };
 
 const getTask = async (boardId, taskId) => {
-  return tasks.find(task => task.id === taskId);
+  return tasks.find(task => task.id === taskId && task.boardId === boardId);
 };
 
 const creatTask = async (
