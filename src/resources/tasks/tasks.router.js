@@ -36,7 +36,7 @@ router
     res.json(Task.toResponse(task));
   })
   .delete(async (req, res) => {
-    const result = await tasksService.deleteTask(
+    const result = await tasksService.deleteTaskById(
       req.params.boardId,
       req.params.id
     );

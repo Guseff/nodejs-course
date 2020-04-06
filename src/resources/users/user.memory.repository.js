@@ -1,6 +1,6 @@
 const User = require('./user.model');
 
-const users = [];
+let users = [];
 
 const getAll = async () => {
   return users;
@@ -27,7 +27,7 @@ const updateUser = async (userId, { name, login, password }) => {
 const deleteUser = userId => {
   const user = users.find(curr => curr.id === userId);
   if (!user) return false;
-  users.splice(users.indexOf(user), 1);
+  users = users.filter(curr => curr.id !== userId);
   return true;
 };
 
