@@ -21,7 +21,7 @@ const updateUser = async (userId, obj) => {
   return (users[index] = { ...users[index], ...obj });
 };
 
-const deleteUser = userId => {
+const deleteUser = async userId => {
   const user = users.find(curr => curr.id === userId);
   if (!user) return false;
   users = users.filter(curr => curr.id !== userId);

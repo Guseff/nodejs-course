@@ -31,18 +31,18 @@ const updateTask = async (taskId, obj) => {
   return (tasks[index] = { ...tasks[index], ...obj });
 };
 
-const deleteTaskById = taskId => {
+const deleteTaskById = async taskId => {
   const task = tasks.find(curr => curr.id === taskId);
   if (!task) return false;
   tasks = tasks.filter(curr => curr.id !== taskId);
   return true;
 };
 
-const deleteTaskByBoardId = boardId => {
+const deleteTaskByBoardId = async boardId => {
   tasks = tasks.filter(curr => curr.boardId !== boardId);
 };
 
-const deleteUserAssignment = id => {
+const deleteUserAssignment = async id => {
   tasks = tasks.map(curr => {
     if (curr.userId === id) {
       curr.userId = null;
