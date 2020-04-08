@@ -12,12 +12,8 @@ const deleteUser = async id => {
     .then(res => {
       res.forEach(task => {
         tasksRepo.updateTask(task.id, {
-          title: task.title,
-          order: task.order,
-          description: task.description,
-          userId: null,
-          boardId: task.boardId,
-          columnId: task.columnId
+          ...task,
+          userId: null
         });
       });
     })
