@@ -17,7 +17,7 @@ const deleteUser = async id => {
         });
       });
     })
-    .catch(err => console.log('Error when task delete ', err));
+    .catch(err => console.log('Error when task reassign ', err));
 
   return await usersRepo.deleteUser(id);
 };

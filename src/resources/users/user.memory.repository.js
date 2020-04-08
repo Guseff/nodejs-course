@@ -16,12 +16,9 @@ const creatUser = async ({ name, login, password }) => {
   return user;
 };
 
-const updateUser = async (userId, { name, login, password }) => {
-  const user = users.find(curr => curr.id === userId);
-  user.name = name;
-  user.login = login;
-  user.password = password;
-  return user;
+const updateUser = async (userId, obj) => {
+  const index = users.findIndex(curr => curr.id === userId);
+  return (users[index] = { ...users[index], ...obj });
 };
 
 const deleteUser = userId => {
