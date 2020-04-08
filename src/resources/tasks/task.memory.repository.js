@@ -42,11 +42,21 @@ const deleteTaskByBoardId = boardId => {
   tasks = tasks.filter(curr => curr.boardId !== boardId);
 };
 
+const deleteUserAssignment = id => {
+  tasks = tasks.map(curr => {
+    if (curr.userId === id) {
+      curr.userId = null;
+    }
+    return curr;
+  });
+};
+
 module.exports = {
   getAll,
   getTask,
   creatTask,
   updateTask,
   deleteTaskById,
-  deleteTaskByBoardId
+  deleteTaskByBoardId,
+  deleteUserAssignment
 };
