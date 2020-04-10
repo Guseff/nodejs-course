@@ -1,4 +1,6 @@
 const express = require('express');
+const morgan = require('morgan');
+const winston = require('./common/logger');
 const swaggerUI = require('swagger-ui-express');
 const path = require('path');
 const YAML = require('yamljs');
@@ -20,6 +22,21 @@ app.use('/', (req, res, next) => {
   }
   next();
 });
+
+app.use(
+  morgan(
+    (tokens, req, res) => {
+      return [
+        tokens.method(req, res),
+        decodeURI(tokens.url(req, res)),
+        tokens.status(req, res),
+        JSON.stringify(req.query),
+        JSON.stringify(req.body)
+      ].join(' ');
+    },
+    { stream: winston.stream }
+  )
+);
 
 app.use('/users', userRouter);
 app.use('/boards', boardRouter);
