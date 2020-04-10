@@ -27,10 +27,15 @@ app.use(
   morgan(
     (tokens, req, res) => {
       return [
-        tokens.method(req, res),
-        decodeURI(tokens.url(req, res)),
-        tokens.status(req, res),
-        JSON.stringify(req.query),
+        'Method:',
+        `${tokens.method(req, res)},`,
+        'URL:',
+        `${decodeURI(tokens.url(req, res))},`,
+        'Status:',
+        `${tokens.status(req, res)},`,
+        'Query object:',
+        `${JSON.stringify(req.query)},`,
+        'Request body:',
         JSON.stringify(req.body)
       ].join(' ');
     },
