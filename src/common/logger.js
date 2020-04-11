@@ -3,7 +3,6 @@ const { createLogger, format, transports } = require('winston');
 const logger = createLogger({
   level: 'silly',
   format: format.combine(format.colorize(), format.cli()),
-  defaultMeta: { service: 'user-service' },
   transports: [
     new transports.Console(),
     new transports.File({
@@ -15,7 +14,7 @@ const logger = createLogger({
 
 logger.stream = {
   write(message) {
-    logger.silly(message);
+    logger.info(message);
   }
 };
 

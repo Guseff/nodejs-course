@@ -22,9 +22,14 @@ router
   .get(async (req, res) => {
     const board = await boardsService.getBoard(req.params.id);
     if (!board) {
-      res.status(404).send('Board not found');
-      return;
+      // res.status(404).send('Board not found');
+      const xxx = new Error('404');
+      console.log('error ---', xxx.code);
+
+      throw xxx;
+      // return;
     }
+    console.log('RES!');
     res.json(Board.toResponse(board));
   })
   .put(async (req, res) => {
