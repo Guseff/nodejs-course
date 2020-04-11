@@ -7,7 +7,7 @@ router
   .route('/')
   .get(async (req, res) => {
     const boards = await boardsService.getAllBoards();
-    res.json(boards.map(Board.toResponse));
+    res.status(200).send(boards.map(Board.toResponse));
   })
   .post(async (req, res, next) => {
     const board = await boardsService.postBoard(req.body);
@@ -15,7 +15,7 @@ router
       next(new RequestError(400, 'Bad request'));
       return;
     }
-    res.json(Board.toResponse(board));
+    res.status(200).send(Board.toResponse(board));
   });
 
 router
@@ -26,7 +26,7 @@ router
       next(new RequestError(404, 'Board not found'));
       return;
     }
-    res.json(Board.toResponse(board));
+    res.status(200).send(Board.toResponse(board));
   })
   .put(async (req, res, next) => {
     const board = await boardsService.putBoard(req.params.id, req.body);
@@ -34,7 +34,7 @@ router
       next(new RequestError(404, 'Board not found'));
       return;
     }
-    res.json(Board.toResponse(board));
+    res.status(200).send(Board.toResponse(board));
   })
   .delete(async (req, res, next) => {
     const result = await boardsService.deleteBoard(req.params.id);
