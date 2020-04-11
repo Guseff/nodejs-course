@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const RequestError = require('../../middlewares/requestError');
+const RequestError = require('../../helpers/requestError');
 const User = require('./user.model');
 const usersService = require('./user.service');
 

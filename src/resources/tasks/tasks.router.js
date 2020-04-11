@@ -1,5 +1,5 @@
 const router = require('express').Router({ mergeParams: true });
-const RequestError = require('../../middlewares/requestError');
+const RequestError = require('../../helpers/requestError');
 const Task = require('./task.model');
 const tasksService = require('./task.service');
 
