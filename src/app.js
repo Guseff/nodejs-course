@@ -2,7 +2,7 @@ const express = require('express');
 const swaggerUI = require('swagger-ui-express');
 const path = require('path');
 const YAML = require('yamljs');
-const logger = require('./common/logger');
+const logger = require('./middlewares/logger');
 const userRouter = require('./resources/users/user.router');
 const boardRouter = require('./resources/boards/board.router');
 const tasksRouter = require('./resources/tasks/tasks.router');
@@ -34,16 +34,18 @@ app.use('/boards', boardRouter);
 app.use('/boards/:boardId/tasks', tasksRouter);
 
 app.use((err, req, res, next) => {
-  console.log('Middleware: ', err);
-  if (err === '404') {
-    res.status(404).send('Page not found');
-    logger.error('404');
+  if (err.code) {
+    logger.error(`${err.code} ${err.message}`);
+    res.status(err.code).send(err.message);
+    return;
   }
+  logger.error('Internal server error');
+  res.status(500).send('Internal server error');
   next(err);
 });
 
 process.on('uncaughtException', err => {
-  logger.error('uncaughtException', err);
+  logger.error(`Uncaught exception: ${err.message}`);
 });
 
 process.on('unhandledRejection', reason => {

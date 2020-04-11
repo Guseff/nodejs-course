@@ -18,6 +18,7 @@ const creatBoard = async ({ title, columns }) => {
 
 const updateBoard = async (boardId, obj) => {
   const index = boards.findIndex(curr => curr.id === boardId);
+  if (index === -1) return null;
   return (boards[index] = { ...boards[index], ...obj });
 };
 

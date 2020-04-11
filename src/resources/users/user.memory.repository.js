@@ -18,6 +18,7 @@ const creatUser = async ({ name, login, password }) => {
 
 const updateUser = async (userId, obj) => {
   const index = users.findIndex(curr => curr.id === userId);
+  if (index === -1) return null;
   return (users[index] = { ...users[index], ...obj });
 };
 

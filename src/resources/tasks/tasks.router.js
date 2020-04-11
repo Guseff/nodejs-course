@@ -1,4 +1,5 @@
 const router = require('express').Router({ mergeParams: true });
+const RequestError = require('../../middlewares/requestError');
 const Task = require('./task.model');
 const tasksService = require('./task.service');
 
@@ -8,10 +9,10 @@ router
     const tasks = await tasksService.getAllTasks(req.params.boardId);
     res.json(tasks.map(Task.toResponse));
   })
-  .post(async (req, res) => {
+  .post(async (req, res, next) => {
     const task = await tasksService.postTask(req.params.boardId, req.body);
     if (!task) {
-      res.status(404).send('Task not found');
+      next(new RequestError(400, 'Bad request'));
       return;
     }
     res.json(Task.toResponse(task));
@@ -19,29 +20,29 @@ router
 
 router
   .route('/:id')
-  .get(async (req, res) => {
+  .get(async (req, res, next) => {
     const task = await tasksService.getTask(req.params.boardId, req.params.id);
     if (!task) {
-      res.status(404).send('Task not found');
+      next(new RequestError(404, 'Task not found'));
       return;
     }
     res.json(Task.toResponse(task));
   })
-  .put(async (req, res) => {
+  .put(async (req, res, next) => {
     const task = await tasksService.putTask(req.params.id, req.body);
     if (!task) {
-      res.status(404).send('Task not found');
+      next(new RequestError(404, 'Task not found'));
       return;
     }
     res.json(Task.toResponse(task));
   })
-  .delete(async (req, res) => {
+  .delete(async (req, res, next) => {
     const result = await tasksService.deleteTaskById(
       req.params.boardId,
       req.params.id
     );
     if (!result) {
-      res.status(404).send('Task not found');
+      next(new RequestError(404, 'Task not found'));
       return;
     }
     res.status(204).send('The task has been deleted');

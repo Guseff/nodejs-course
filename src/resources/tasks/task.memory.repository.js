@@ -28,6 +28,7 @@ const creatTask = async (
 
 const updateTask = async (taskId, obj) => {
   const index = tasks.findIndex(curr => curr.id === taskId);
+  if (index === -1) return null;
   return (tasks[index] = { ...tasks[index], ...obj });
 };
 
