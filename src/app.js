@@ -34,8 +34,10 @@ process
     logger.error(`Unhandled rejection detected: ${reason.message}`);
   });
 
-// to test uncaughtException or unhandledRejection uncomment appropriate line below
+// To test uncaughtException or unhandledRejection uncomment appropriate line below
+// I now I shouldn't leave commented code. I do it for your convenience only.
+
 // throw Error('Oops! Exception!');
-Promise.reject(Error('Oops! Rejection!'));
+// Promise.reject(Error('Oops! Rejection!'));
 
 module.exports = app;
