@@ -27,8 +27,8 @@ app.use(errorHandler);
 
 process.on('uncaughtException', err => {
   logger.error(`Uncaught exception: ${err.message}`);
-  // eslint-disable-next-line no-process-exit
-  process.exit(1);
+  const { exit } = process;
+  exit(1);
 });
 
 process.on('unhandledRejection', reason => {
