@@ -42,6 +42,9 @@ To test with authorization
 ```
 npm run test:auth
 ```
+## Logging
+
+Logs and errors enters in console and writes in logs/combined.log file.
 
 ## Development
 

@@ -16,11 +16,10 @@ const creatBoard = async ({ title, columns }) => {
   return board;
 };
 
-const updateBoard = async (boardId, { title, columns }) => {
-  const board = boards.find(curr => curr.id === boardId);
-  board.title = title;
-  board.columns = columns;
-  return board;
+const updateBoard = async (boardId, obj) => {
+  const index = boards.findIndex(curr => curr.id === boardId);
+  if (index === -1) return null;
+  return (boards[index] = { ...boards[index], ...obj });
 };
 
 const deleteBoard = async boardId => {

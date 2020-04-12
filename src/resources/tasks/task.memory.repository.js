@@ -26,29 +26,30 @@ const creatTask = async (
   return task;
 };
 
-const updateTask = async (
-  taskId,
-  { title, order, description, userId, boardId, columnId }
-) => {
-  const task = tasks.find(curr => curr.id === taskId);
-  task.title = title;
-  task.order = order;
-  task.description = description;
-  task.userId = userId;
-  task.boardId = boardId;
-  task.columnId = columnId;
-  return task;
+const updateTask = async (taskId, obj) => {
+  const index = tasks.findIndex(curr => curr.id === taskId);
+  if (index === -1) return null;
+  return (tasks[index] = { ...tasks[index], ...obj });
 };
 
-const deleteTaskById = taskId => {
+const deleteTaskById = async taskId => {
   const task = tasks.find(curr => curr.id === taskId);
   if (!task) return false;
   tasks = tasks.filter(curr => curr.id !== taskId);
   return true;
 };
 
-const deleteTaskByBoardId = boardId => {
+const deleteTaskByBoardId = async boardId => {
   tasks = tasks.filter(curr => curr.boardId !== boardId);
+};
+
+const deleteUserAssignment = async id => {
+  tasks = tasks.map(curr => {
+    if (curr.userId === id) {
+      curr.userId = null;
+    }
+    return curr;
+  });
 };
 
 module.exports = {
@@ -57,5 +58,6 @@ module.exports = {
   creatTask,
   updateTask,
   deleteTaskById,
-  deleteTaskByBoardId
+  deleteTaskByBoardId,
+  deleteUserAssignment
 };

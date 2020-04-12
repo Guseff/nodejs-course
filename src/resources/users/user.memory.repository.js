@@ -16,15 +16,13 @@ const creatUser = async ({ name, login, password }) => {
   return user;
 };
 
-const updateUser = async (userId, { name, login, password }) => {
-  const user = users.find(curr => curr.id === userId);
-  user.name = name;
-  user.login = login;
-  user.password = password;
-  return user;
+const updateUser = async (userId, obj) => {
+  const index = users.findIndex(curr => curr.id === userId);
+  if (index === -1) return null;
+  return (users[index] = { ...users[index], ...obj });
 };
 
-const deleteUser = userId => {
+const deleteUser = async userId => {
   const user = users.find(curr => curr.id === userId);
   if (!user) return false;
   users = users.filter(curr => curr.id !== userId);
