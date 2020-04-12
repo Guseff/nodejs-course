@@ -27,10 +27,16 @@ app.use(errorHandler);
 
 process.on('uncaughtException', err => {
   logger.error(`Uncaught exception: ${err.message}`);
+  // eslint-disable-next-line no-process-exit
+  process.exit(1);
 });
 
 process.on('unhandledRejection', reason => {
   logger.error(`Unhandled rejection detected: ${reason.message}`);
 });
+
+// to test uncaughtException or unhandledRejection uncomment appropriate line below
+// throw Error('Oops! Exception!');
+// Promise.reject(Error('Oops! Rejection!'));
 
 module.exports = app;
