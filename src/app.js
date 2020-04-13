@@ -1,3 +1,4 @@
+/* eslint-disable no-process-exit */
 const express = require('express');
 const swaggerUI = require('swagger-ui-express');
 const path = require('path');
@@ -28,10 +29,11 @@ app.use(errorHandler);
 process
   .on('uncaughtException', err => {
     logger.error(`Uncaught exception: ${err.message}`);
-    process.exitCode = 1;
+    process.exit(1);
   })
   .on('unhandledRejection', reason => {
     logger.error(`Unhandled rejection detected: ${reason.message}`);
+    process.exit(1);
   });
 
 // To test uncaughtException or unhandledRejection uncomment appropriate line below

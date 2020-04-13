@@ -9,7 +9,7 @@ const errorHandler = (err, req, res, next) => {
   }
   logger.error('Internal server error');
   res.status(HttpStatus.INTERNAL_SERVER_ERROR).send('Internal server error');
-  next(err);
+  next();
 };
 
 module.exports = errorHandler;
