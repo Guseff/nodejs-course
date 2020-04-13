@@ -32,6 +32,7 @@ process
   })
   .on('unhandledRejection', reason => {
     logger.error(`Unhandled rejection detected: ${reason.message}`);
+    process.exitCode = 1;
   });
 
 // To test uncaughtException or unhandledRejection uncomment appropriate line below
