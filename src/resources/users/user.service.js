@@ -1,5 +1,5 @@
-const usersRepo = require('./user.memory.repository');
-const tasksRepo = require('../tasks/task.memory.repository');
+const usersRepo = require('./user.db.repository');
+const tasksRepo = require('../tasks/task.db.repository');
 
 const getAll = () => usersRepo.getAll();
 const getUser = id => usersRepo.getUser(id);
