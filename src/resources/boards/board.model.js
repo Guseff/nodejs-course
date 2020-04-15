@@ -1,6 +1,5 @@
 const uuid = require('uuid');
 const mongoose = require('mongoose');
-// const Column = require('../columns/column.model');
 
 const boardSchema = new mongoose.Schema({
   title: String,

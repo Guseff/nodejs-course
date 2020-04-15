@@ -36,10 +36,4 @@ process
     process.exit(1);
   });
 
-// To test uncaughtException or unhandledRejection uncomment appropriate line below
-// I now I shouldn't leave commented code. I do it for your convenience only.
-
-// throw Error('Oops! Exception!');
-// Promise.reject(Error('Oops! Rejection!'));
-
 module.exports = app;
