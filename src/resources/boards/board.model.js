@@ -1,6 +1,6 @@
 const uuid = require('uuid');
 const mongoose = require('mongoose');
-const Column = require('../columns/columns.model');
+const columnSchema = require('../columns/columns.model');
 
 const boardSchema = new mongoose.Schema({
   title: {
@@ -9,7 +9,7 @@ const boardSchema = new mongoose.Schema({
   },
   columns: {
     type: Array,
-    default: [Column]
+    default: [columnSchema]
   },
   _id: {
     type: String,
