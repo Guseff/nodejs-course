@@ -24,6 +24,6 @@ columnSchema.statics.toResponse = board => {
   return { id, title, order };
 };
 
-// const Column = mongoose.model('Column', columnSchema);
+const Column = mongoose.model('Column', columnSchema);
 
-module.exports = columnSchema;
+module.exports = { columnSchema, Column };

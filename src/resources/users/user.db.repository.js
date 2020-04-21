@@ -5,7 +5,7 @@ const getAll = async () => {
 };
 
 const getUser = async userId => {
-  return User.findById(userId);
+  return User.findOne({ _id: userId });
 };
 
 const creatUser = async user => {
@@ -13,7 +13,8 @@ const creatUser = async user => {
 };
 
 const updateUser = async (userId, obj) => {
-  return User.updateOne({ _id: userId }, obj);
+  await User.findByIdAndUpdate(userId, obj);
+  return User.findById(userId);
 };
 
 const deleteUser = async userId => {

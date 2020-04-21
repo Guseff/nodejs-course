@@ -13,7 +13,17 @@ const creatBoard = async board => {
 };
 
 const updateBoard = async (boardId, obj) => {
-  return Board.updateOne({ _id: boardId }, obj);
+  await Board.findByIdAndUpdate(boardId, {
+    ...obj,
+    columns: obj.columns.map(curr => {
+      return {
+        _id: curr.id,
+        title: curr.title,
+        order: curr.order
+      };
+    })
+  });
+  return Board.findById(boardId);
 };
 
 const deleteBoard = async boardId => {
