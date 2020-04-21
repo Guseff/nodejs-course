@@ -13,7 +13,7 @@ const creatUser = async user => {
 };
 
 const updateUser = async (userId, obj) => {
-  await User.findByIdAndUpdate(userId, obj);
+  await User.updateOne({ _id: userId }, obj);
   return User.findById(userId);
 };
 

@@ -16,7 +16,7 @@ const creatTask = async (
 };
 
 const updateTask = async (taskId, obj) => {
-  await Task.findByIdAndUpdate(taskId, obj);
+  await Task.updateOne({ _id: taskId }, obj);
   return Task.findById(taskId);
 };
 
