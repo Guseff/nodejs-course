@@ -8,7 +8,7 @@ const authMiddleware = (req, res, next) => {
   }
 
   const authHeader = req.headers.authorization;
-  if (!authHeader) {
+  if (!authHeader || !authHeader.startsWith('Bearer ')) {
     throw new RequestError(401, 'Unauthorized');
   }
 

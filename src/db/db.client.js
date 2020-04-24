@@ -12,9 +12,11 @@ const connectToDB = cb => {
   db.on('error', console.error.bind(console, 'Connection Error'));
   db.once('open', () => {
     console.log('Connection to DB done');
-    db.dropDatabase();
-    postUser({ name: 'Admin', login: 'admin', password: 'admin' });
-    cb();
+    db.dropDatabase()
+      .then(() => {
+        postUser({ name: 'Admin', login: 'admin', password: 'admin' });
+      })
+      .then(() => cb());
   });
 };
 
